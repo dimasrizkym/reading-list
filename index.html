@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookshelf Apps - Dimas Rizky</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<header class="conatiner-header">
+    <h1 class="conatiner-header-title">Daftar Buku Bacaan</h1>
+</header>
+<main>
+    <section class="input-data">
+        <h2>Masukkan Buku Baru</h2>
+        <form id="inputBook">
+            <div class="input">
+                <label for="inputBookTitle">Judul Buku :</label>
+                <input
+                    id="inputBookTitle"
+                    type="text"
+                    placeholder="Masukan Judul Buku"
+                    required>
+            </div>
+            <div class="input">
+                <label for="inputBookAuthor">Penulis Buku :</label>
+                <input 
+                    id="inputBookAuthor"
+                    type="text"
+                    placeholder="Masukan Penulis Buku"
+                    required>
+            </div>
+            <div class="input">
+                <label for="inputBookYear">Tahun Terbit :</label>
+                <input 
+                    id="inputBookYear" 
+                    placeholder="Masukan Judul Buku" 
+                    type="number" 
+                    required>
+            </div>
+            <div class="input-inline">
+                <label for="inputBookIsComplete">Buku Telah Selesai dibaca</label>
+                <input id="inputBookIsComplete" type="checkbox">
+            </div>
+            <button id="bookSubmit" type="submit">Tambahkan Buku</button>
+        </form>
+    </section>
+
+    <section class="search_section">
+        <form id="searchBook">
+            <label for="searchBookTitle">Search Book</label>
+            <input 
+                id="searchBookTitle" 
+                type="text" 
+                onkeyup="searchBook();" 
+                placeholder="Masukkan Judul Buku">
+        </form>
+    </section>
+
+    <section class="book-shelf">
+        <h2>Belum selesai dibaca</h2>
+        <div id="incompleteBookshelfList" class="book-list">
+            
+        </div>
+    </section>
+
+    <section class="book-shelf">
+        <h2>Selesai dibaca</h2>
+        <div id="completeBookshelfList" class="book-list">
+
+        </div>
+    </section>
+</main>
+
+<script src="script/data.js"></script>
+<script src="script/dom.js"></script>
+<script src="script/main.js"></script>
+<script>
+function searchBook() {
+    let input = document.getElementById("searchBookTitle");
+    let filter = input.value.toUpperCase();
+    let article = document.getElementsByTagName("article");
+    for (let i = 0; i < article.length; i++) {
+        a = article[i].getElementsByTagName("h3")[0];
+        let txtValue = a.textContent || a.innerText;
+        
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            article[i].style.display = "";
+        } else {
+            article[i].style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+</html>
+
